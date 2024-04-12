@@ -1,3 +1,5 @@
 # Leetcode-Problems
 
-Here is a collection of Leetcode problems that I solved.
+This repository contains solutions to various LeetCode problems.
+
+(Time Complexity analysis and Algorithm explanaiton will be added soon)

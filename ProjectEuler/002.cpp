@@ -4,8 +4,8 @@
 
 // There's and alternative more efficient approach to this.
 /*
- - follow the formula for even fibonacchi numbers => F(n) = 4 * F(n-1) + F(n-2)
- - This way we can avoid calculating numbers that're not even. Accelerating computations.
+ follow the formula for even fibonacchi numbers => F(n) = 4 * F(n-1) + F(n-2)
+ This way we can avoid calculating numbers that're not even. Accelerating computations.
 */
 
 int main()

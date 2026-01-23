@@ -3,7 +3,7 @@
 #include <gmpxx.h>
 #include <iomanip>
 
-// use this to compile ==> g++ 003.cpp -lgmp -lgmpxx -O2
+// use this to compile and run ==> g++ 003.cpp -lgmp -lgmpxx -O2 -o a && ./a
 /*
 Refer to my logseq doc for more details.
 */
@@ -13,8 +13,8 @@ int main()
   auto start = std::chrono::high_resolution_clock::now();
 
   //  Find largest prime factor of number 600851475143
-  mpz_class a, b, largest_factor;
-  a = "60085147514378";
+  mpz_class a, largest_factor;
+  a = "600851475143";
   for (mpz_class i("2"); i <= a;)
   {
     if (a % i == 0)

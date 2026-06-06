@@ -16,7 +16,7 @@ int main()
   int a, b, c, sum = 2;
   a = 1;
   b = 2;
-  for (int c = 0; c <= 4000000;)
+  for (int c = 0; c <= 400000000;)
   {
     c = a + b;
     a = b;

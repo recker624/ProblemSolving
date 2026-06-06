@@ -1,60 +1,67 @@
 #include <iostream>
-#include <chrono>
-#include <gmpxx.h>
-#include <iomanip>
 #include <vector>
 #include <algorithm>
-#include <iterator>
+#include <chrono>
+#include <iomanip>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+#include <stack>
+#include <string>
+#include <cmath>
+#include <array>
 
-// Using internal functions
-// RESULT : Not much difference
-void SelectionSortOptimize(std::vector<int> &arr)
+void selectionSort(std::array<int, 5> &arr)
 {
-  for (int i = 0; i < arr.size(); i++)
-  {
-    std::vector<int>::iterator min_itr = std::min_element(arr.begin() + i, arr.end());
-    int temp = arr[i];
-    arr[i] = *min_itr;
-    *min_itr = temp;
-  }
-}
+  int length = arr.size();
 
-void SelectionSort(std::vector<int> &arr)
-{
-  for (int i = 0; i < arr.size(); i++)
+  for (int i = 0; i < length - 1; i++)
   {
-    int min = INT_MAX, minIndex = 0;
-    for (int j = i; j < arr.size(); j++)
+    int minId = i;
+    for (int j = i + 1; j < length; j++)
     {
-      if (min > arr[j])
+      if (arr[minId] > arr[j])
       {
-        min = arr[j];
-        minIndex = j;
+        minId = j;
       }
     }
-    int temp = arr[i];
-    arr[i] = min;
-    arr[minIndex] = temp;
+    if (minId != i)
+    {
+      // exchange the values efficiently using XOR operator.
+      arr[i] = arr[i] ^ arr[minId];
+      arr[minId] = arr[i] ^ arr[minId];
+      arr[i] = arr[i] ^ arr[minId];
+    }
   }
 }
 
 int main()
 {
+  // Optimizing I/O performance
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(NULL);
+
   auto start = std::chrono::high_resolution_clock::now();
 
-  std::vector<int> arr = {5, 4, 3, 2, 1};
+  std::array<int, 5> arr = {5, 4, 3, 2, 1};
 
-  SelectionSortOptimize(arr);
+  selectionSort(arr);
 
-  for (int n : arr)
+  for (int i : arr)
   {
-    std::cout << n << std::endl;
+    std::cout << i << std::endl;
   }
 
+  std::cout << std::endl;
+
   auto end = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-  double seconds = duration.count() / 1000000.0;
-  std::cout << std::fixed << std::setprecision(6) << "Execution time: " << seconds << " seconds" << std::endl;
+  std::chrono::duration<double> duration = end - start;
+
+  std::cerr << std::fixed << std::setprecision(6) << "\n----------------------------" << std::endl;
+  std::cerr << "Execution time: " << duration.count() << " seconds" << std::endl;
+  std::cerr << "----------------------------" << std::endl;
 
   return 0;
 }

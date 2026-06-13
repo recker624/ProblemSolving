@@ -4,9 +4,18 @@
 #include <iomanip>
 #include <vector>
 
-void bubble_sort(std::vector<int> &vec)
+void bubble_sort_recursive(std::vector<int> &vec, int startIndex, int stopIndex) 
 {
-  // bubble sort algorithm implementation but recursively instead of using a FOR loop
+  if(startIndex - stopIndex == 0) return;
+
+  for(int i=0; i < stopIndex; i++) {
+    if (vec[i] > vec[i+1])
+      vec[i] = vec[i] ^ vec[i+1];
+      vec[i + 1] = vec[i] ^ vec[i+1];
+      vec[i] = vec[i] ^ vec[i+1];
+  }
+
+  bubble_sort_recursive(vec, startIndex, stopIndex - 1);
 }
 
 int main()
@@ -14,7 +23,7 @@ int main()
   auto start = std::chrono::high_resolution_clock::now();
 
   std::vector<int> arr = {5, 4, 3, 2, 1};
-  bubble_sort(arr);
+  bubble_sort_recursive(arr, 0, arr.size() - 1);
 
   for (int i : arr)
   {
